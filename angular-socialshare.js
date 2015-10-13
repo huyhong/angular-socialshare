@@ -69,6 +69,7 @@ angular.module('djds4rce.angular-socialshare', [])
 			link: function(scope, element, attr) {
 				attr.$observe('url', function() {
 					if (attr.shares && attr.url) {
+						delete $http.defaults.headers.common['Cache-Control']
 						$http.get('https://api.facebook.com/method/links.getStats?urls=' + attr.url + '&format=json').success(function(res) {
 							var count = res[0] ? res[0].total_count.toString() : 0;
 							var decimal = '';
@@ -128,6 +129,7 @@ angular.module('djds4rce.angular-socialshare', [])
 			link: function(scope, element, attr) {
 				attr.$observe('url', function() {
 					if (attr.shares && attr.url) {
+						delete $http.defaults.headers.common['Cache-Control']
 						$http.get('https://api.facebook.com/method/links.getStats?urls=' + attr.url + '&format=json').success(function(res) {
 							var count = res[0] ? res[0].total_count.toString() : 0;
 							var decimal = '';
